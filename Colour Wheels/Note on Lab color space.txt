@@ -1,0 +1,1 @@
+L*a*b space consists of a luminosity ('L') or brightness layer, chromaticity layer 'a' indicating where color falls along the red-green axis, and chromaticity layer 'b' indicating where the color falls along the blue-yellow axis.
