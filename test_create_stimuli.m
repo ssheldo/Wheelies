@@ -54,19 +54,22 @@ rectColor = black; %set color to black
 
 % Draw line
 % Screen('DrawLine', window, color, fromH, fromV, toH, toV, linewidth);
-Screen('DrawLine', window, rectColor, xCenter, yCenter+30, xCenter-1, yCenter, 2);
-Screen('DrawLine', window, rectColor, xCenter, yCenter+30, xCenter+1, yCenter, 2);
-Screen('DrawLine', window, rectColor, xCenter, yCenter+30, xCenter-2, yCenter, 2);
-Screen('DrawLine', window, rectColor, xCenter, yCenter+30, xCenter+2, yCenter, 2);
-Screen('DrawLine', window, rectColor, xCenter, yCenter+30, xCenter-3, yCenter, 2);
-Screen('DrawLine', window, rectColor, xCenter, yCenter+30, xCenter+3, yCenter, 2);
-Screen('DrawLine', window, rectColor, xCenter, yCenter+30, xCenter-4, yCenter, 2);
-Screen('DrawLine', window, rectColor, xCenter, yCenter+30, xCenter+4, yCenter, 2);
+% To Do: consistent line length for each angle of line sets
+yadj = 30; %adjust lines y position (by +/-5)
+xadj = 0; %adjust lines x position (by +/-5)       
+Screen('DrawLine', window, rectColor, xCenter+xadj, yCenter+yadj, xCenter-1, yCenter, 2);
+Screen('DrawLine', window, rectColor, xCenter+xadj, yCenter+yadj, xCenter+1, yCenter, 2);
+Screen('DrawLine', window, rectColor, xCenter+xadj, yCenter+yadj, xCenter-2, yCenter, 2);
+Screen('DrawLine', window, rectColor, xCenter+xadj, yCenter+yadj, xCenter+2, yCenter, 2);
+Screen('DrawLine', window, rectColor, xCenter+xadj, yCenter+yadj, xCenter-3, yCenter, 2);
+Screen('DrawLine', window, rectColor, xCenter+xadj, yCenter+yadj, xCenter+3, yCenter, 2);
+Screen('DrawLine', window, rectColor, xCenter+xadj, yCenter+yadj, xCenter-4, yCenter, 2);
+Screen('DrawLine', window, rectColor, xCenter+xadj, yCenter+yadj, xCenter+4, yCenter, 2);
 
 
 % Center the oval on the centre of the screen
 centeredRect = CenterRectOnPointd(baseRect(2,:), xCenter, yCenter);
-
+        
 % Draw the rect to the screen
 Screen('FillOval', window, rectColor, centeredRect');
 
@@ -85,14 +88,14 @@ while any(buttons)
     [x, y, buttons] = GetMouse(window);
 end
 
-% everMovedFromCenter = false;
-% while ~any(buttons)
-% 
+everMovedFromCenter = false;
+while ~any(buttons)
+
 % %     drawColorWheel(window, prefs, prefs.colorwheel_trial{trialIndex});
-% 
-%     [x,y,buttons] = GetMouse(window);
+
+    [x,y,buttons] = GetMouse(window);
 %     [minDistance, minDistanceIndex] = min(sqrt((colorWheelLocations(1, :) - x).^2 + (colorWheelLocations(2, :) - y).^2));
-% 
+
 %     if(minDistance < 500)
 %         everMovedFromCenter = true;
 %     end
@@ -110,12 +113,12 @@ end
 %     Screen('FillRect',window.onScreen,Vpixx2Vamp(0),prefs.trigger_size);
 %     Screen('Flip', window);
 % 
-% end
-%         
+end
+        
 
 % Wait for a key press
 KbStrokeWait;
-
+ 
 % Clear the screen
 sca;
 
