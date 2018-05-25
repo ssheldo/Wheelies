@@ -292,6 +292,8 @@ try
         end
         %------------------------------------------------------------------
         everMovedFromCenter = false;
+        %randomize starting location of lines if mouse is not moved 
+        startdeg = prefs.degslocs(randi(length(prefs.degslocs),1));
         while ~any(buttons) % keep track of mouse location if moved
             
             [x,y,buttons] = GetMouse(window.onScreen);
@@ -308,11 +310,15 @@ try
                 yloc2 = prefs.orientwheel2(2,minDistanceIndex); %for edge lines 
                 xloc2 = prefs.orientwheel2(1,minDistanceIndex); %for edge lines 
             else
-                %starting location of lines if mouse is not moved
-                yloc = -30;
-                xloc = 0;
-                yloc2 = 0;
-                xloc2 = 2;
+                %starting location of lines if mouse is not moved - randomized 
+                yloc = prefs.orientwheel(2,startdeg); %adjust lines y position
+                xloc = prefs.orientwheel(1,startdeg); %adjust lines x position 
+                yloc2 = prefs.orientwheel2(2,startdeg); %for edge lines 
+                xloc2 = prefs.orientwheel2(1,startdeg); %for edge lines 
+%                 yloc = -30;
+%                 xloc = 0;
+%                 yloc2 = 0;
+%                 xloc2 = 2;
             end
             
             % Set the new coordinates
