@@ -130,7 +130,7 @@ try
         itemToTest(trialIndex) = nItems; %nItems should always be 1 because there will only be 1 target
 
         % Pick the orientation for this trial.
-        trialOrient{trialIndex} = prefs.selectorientTrial(trialIndex);
+        trialOrient{trialIndex} = prefs.degslocs(prefs.selectorientTrial(trialIndex));
         
         
         if present(trialIndex) == 1
@@ -343,8 +343,10 @@ try
             Screen('Flip', window.onScreen);
         end
         
-        data.reportedOrientRads(trialIndex) = deg2rad(minDistanceIndex);
-        data.reportedOrientDegrees(trialIndex) = minDistanceIndex;
+        [respDistance, respDistanceIndex] = min(sqrt((orientWheelLocations(1,:) - x).^2 + (orientWheelLocations(2,:) - y).^2));
+        data.reportedOrientRads(trialIndex) = deg2rad(respDistanceIndex);
+        data.reportedOrientDegrees(trialIndex) = respDistanceIndex;
+        data.reportedRespDistance(trialIndex) = respDistance;
         
         HideCursor
         
@@ -778,7 +780,7 @@ prefs.fixationSize = 4; %size of dot
 % Orientation Wheel ---
 % ---------------------
 % To estimate orientation based on location of mouse (not actually drawn)
-prefs.orientWheelRadius = 30; %size of orientation wheel (not drawn)
+prefs.orientWheelRadius = 35; %size of orientation wheel (not drawn)
 
 
 % -------------------
